@@ -1,2 +1,2 @@
 import subprocess
-p = subprocess.call(["ls"])
+p = subprocess.call(["ll"])
