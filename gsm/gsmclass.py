@@ -1,2 +1,2 @@
 import subprocess
-print("script works")
+p = subprocess.call(["ls"])
