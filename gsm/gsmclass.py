@@ -1,2 +1,2 @@
 import subprocess
-p = subprocess.call(["ll"])
+p = subprocess.call(["ls", 'echo "works"'])
