@@ -8,7 +8,7 @@ class Gsm:
         print("Sending")
         msg = "\'number=\"" + number + "\",text=\"" + content + "\",smsc=\"+38641001333\",validity=100,class=1,delivery-report-request=no\'"
         print(msg)
-        p = subprocess.Popen(["mmcli", "-m", "0", "messaging-create-sms=" + msg], stdout=subprocess.PIPE)
+        p = subprocess.Popen(["mmcli", "-m", "0", "\x2D\x2Dmessaging-create-sms=" + msg], stdout=subprocess.PIPE)
         msg_id = self.check_for_new_msg()
         p = subprocess.Popen(["mmcli", "-m", "0", "-s", str(msg_id), "--send"], stdout=subprocess.PIPE)
         return None
