@@ -12,15 +12,10 @@ while p1.check_for_new_msg():
     sleep(1)
 
 
-def check_for_msg():
-    while 1:
-        if p1.check_for_new_msg():
-            f(p1.read_msg(p1.check_for_new_msg()))
-        sleep(1)
 
 
-rec_t = threading.Thread(target=check_for_msg)
-rec_t.start()
+
+
 
 print("almost")
 p1.send_msg("+38651884931", "Please work!")

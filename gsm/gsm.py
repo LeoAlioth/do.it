@@ -1,9 +1,14 @@
 import subprocess
-from time import sleep
+import threading
+
+
+class Gsm():
 
 
 
-class Gsm:
+    def __init__(self):
+        while self.check_for_new_msg():
+            self.del_msg(self.check_for_new_msg())
 
     def send_msg(self, number, content):
         print("Sending")
@@ -43,3 +48,11 @@ class Gsm:
             return True
         else:
             return False
+
+    def msg_check_thread(self):
+        while 1:
+            if self.check_for_new_msg():
+                print(self.read_msg(self.check_for_new_msg()))
+
+    rec_t = threading.Thread(target=msg_check_thread)
+    rec_t.start()
