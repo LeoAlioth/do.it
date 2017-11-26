@@ -16,7 +16,7 @@ class Gsm:
 
     def check_for_new_msg(self):
         p = subprocess.call(["mmcli", "-m", "0", "--messaging-list-sms"])
-        print(p)
+        print(type(p))
         if "No SMS messages were found" in p:
             print(p)
             return p
