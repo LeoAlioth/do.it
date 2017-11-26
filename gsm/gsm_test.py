@@ -19,7 +19,7 @@ def check_for_msg():
         sleep(1)
 
 
-rec_t = threading.Thread(check_for_msg())
+rec_t = threading.Thread(target = check_for_msg)
 rec_t.start()
 
 print("almost")
