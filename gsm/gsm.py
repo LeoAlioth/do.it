@@ -17,7 +17,7 @@ class Gsm:
         output = str(p.stdout.read(), "utf-8")
         if output.find('No SMS messages were found') != -1:
             return False
-        elif !created and output.find('(unknown)') != -1:
+        elif not created and output.find('(unknown)') != -1:
             return False
         else:
             return int(output.split("/")[-1].split(" ")[0])
