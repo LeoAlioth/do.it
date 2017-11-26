@@ -6,7 +6,7 @@ class Gsm:
     def __init__(self, phone_num):
         self.phone_num = phone_num
         p = subprocess.call(["mmcli", "-m", "0", "--messaging-list-sms"])
-        prinnt(p)
+        print(p)
 
 
     def send_msg(self):
