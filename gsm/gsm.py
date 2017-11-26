@@ -3,21 +3,21 @@ import threading
 from time import sleep
 
 
-class Gsm():
-
+class Gsm:
 
     def __init__(self, read_func=print):
         self.read_func = read_func
-        last_message = {"Number": "None", "Content": "Empty"}
         while self.check_for_new_msg():
             self.del_msg(self.check_for_new_msg())
         self.init_msg_check_thread()
 
-    def check_for_new_msg(self):
+    def check_for_new_msg(self, created=False):
         p = subprocess.Popen(["mmcli", "-m", "0", "--messaging-list-sms"], stdout=subprocess.PIPE)
         p.wait()
         output = str(p.stdout.read(), "utf-8")
-        if output.find('No SMS messages were found') != -1:
+        if created:
+            return int(output.split("/")[-1].split(" ")[0])
+        elif output.find('No SMS messages were found') != -1:
             return False
         else:
             return int(output.split("/")[-1].split(" ")[0])
@@ -38,7 +38,7 @@ class Gsm():
         number = output.split("number: ")[-1].split("\n")[0].strip("'")
         content = output.split("text: ")[-1].split("\n")[0].strip("'")
         self.del_msg(msg_id)
-        return (number, content)
+        return tuple([number, content])
 
     def send_msg(self, number, content):
         msg = "--messaging-create-sms=number=\"" + number + "\",text=\"" + content + "\",smsc=\"+38641001333\",validity=100,class=1,delivery-report-request=no"
@@ -59,6 +59,3 @@ class Gsm():
     def init_msg_check_thread(self):
         rec_t = threading.Thread(target=self.msg_check_thread)
         rec_t.start()
-
-
-
