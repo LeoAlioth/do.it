@@ -20,20 +20,54 @@ doit.cmds({
 	"constructor": ModuleY.init,
 	"destructor":  ModuleY.delete,
 	"cmds": [{
-		"cmd": "sell",
-		"desc": "sell the load",
+		"cmd": "buy",
+		"desc": "buy the load",
 		"function": ModuleY.payload,
 		"in": [{
-			"name": "qwe",
+			"name": "x",
 			"type": "int",
 			"desc": "asd the int"
 		}],
 		"out": [{
-			"name": "zxc",
+			"name": "a",
 			"display": "static"
 		}],
 		"status": [
-			{"200": "Two times your number is $qwe"}
+			{"200": "Two times your number is $a"}
+		]
+	},
+	{
+		"cmd": "sell",
+		"desc": "sell the load",
+		"function": ModuleY.payload,
+		"in": [{
+			"name": "y",
+			"type": "int",
+			"desc": "asd the int"
+		}],
+		"out": [{
+			"name": "b",
+			"display": "static"
+		}],
+		"status": [
+			{"200": "Two times your number is $b"}
+		]
+	},
+	{
+		"cmd": "pay",
+		"desc": "pay the load",
+		"function": ModuleY.payload,
+		"in": [{
+			"name": "z",
+			"type": "int",
+			"desc": "asd the int"
+		}],
+		"out": [{
+			"name": "c",
+			"display": "static"
+		}],
+		"status": [
+			{"200": "Two times your number is $c"}
 		]
 	}]
 })

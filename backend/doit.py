@@ -25,13 +25,15 @@ class Doit:
 
 	def constructor(self):
 		for name, mod in self.mods.items():
-			print("Initialising", name)
-			mod.constructor()
+			if mod.constructor:
+				print("Initialising", name)
+				mod.constructor()
 
 	def destructor(self):
 		for name, mod in self.mods.items():
-			print("Destroying", name)
-			mod.destructor()
+			if mod.destructor:
+				print("Destroying", name)
+				mod.destructor()
 
 	def reconstruct(self):
 		self.destructor()
@@ -107,7 +109,15 @@ class Doit:
 							good_payload = False
 							break
 				if good_payload:
-					data = self.mods[mid].cmds_call[cmd](payload);
+					try:
+						data = self.mods[mid].cmds_call[cmd](payload);
+						if not data.get("status", None):
+							if type(data) is list:
+								data = Doit.httpstatus(200, data)
+							else:
+								data = Doit.httpstatus(200, [data])
+					except:
+						data = Doit.httpstatus(500, [], "Internal server error")
 				else:
 					data = Doit.httpstatus(400, [], "Bad request")
 			else:

@@ -6,6 +6,7 @@
 #
 
 module_list = [
-	('mod1', True),
-	('mod2', True)
+	("mod1", True),
+	("mod2", True),
+	("srm", True)
 ]

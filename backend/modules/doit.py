@@ -25,8 +25,8 @@ def cmds(cfg):
 	module.mid = Module.module_cache_id
 	module.name = cfg["module"]
 	module.desc = cfg["desc"]
-	module.constructor = cfg["constructor"]
-	module.destructor  = cfg["destructor"]
+	module.constructor = cfg.get("constructor", None)
+	module.destructor  = cfg.get("destructor", None)
 
 	Module.module_cache.append({
 		"id": Module.module_cache_id,

@@ -32,6 +32,9 @@ def get_module_cmds(mid=-1, cmd=""):
 @app.route("/api/modules/<int:mid>/<cmd>", methods=["POST"])
 def get_module_cmd_data(mid=-1, cmd=""):
 	try:
+		data = request.get_data()
+		if len(data) == 0:
+			data = []
 		data = json.loads(request.get_data())
 		data = doit.get_module_cmd_data(mid, cmd, data["data"])
 		return jsonify(data), data["status"]
