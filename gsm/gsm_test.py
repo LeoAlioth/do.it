@@ -16,3 +16,4 @@ def check_for_msg():
     if p1.check_for_new_msg():
         last_msg = p1.read_msg(p1.check_for_new_msg())
     t.start()
+    print("started")
