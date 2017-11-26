@@ -9,7 +9,7 @@ class Gsm:
     def send_msg(self):
         return None
 
-    def read_message(self, msg_id):
+    def read_msg(self, msg_id):
         p = subprocess.Popen(["mmcli", "-s", str(msg_id)], stdout=subprocess.PIPE)
         output = str(p.stdout.read(), "utf-8")
         output = output.split("text: ")[-1].split("\n")[0]
