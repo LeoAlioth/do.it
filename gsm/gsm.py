@@ -13,6 +13,7 @@ class Gsm:
         p = subprocess.Popen(["mmcli", "-s", str(msg_id)], stdout=subprocess.PIPE)
         output = str(p.stdout.read(), "utf-8")
         output = output.split("text: ")[-1].split("\n")[0].strip("'")
+        self.del_msg(msg_id)
         return output
 
     def check_for_new_msg(self):
