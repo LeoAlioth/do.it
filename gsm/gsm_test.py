@@ -1,11 +1,11 @@
 from gsm import *
 from time import sleep
-from threading import Timer
+import threading
 
 p1 = Gsm("+38651884931")
 last_msg = ""
 
-f=print
+f = print
 
 while p1.check_for_new_msg():
     p1.del_msg(p1.check_for_new_msg())
@@ -15,13 +15,7 @@ while p1.check_for_new_msg():
 def check_for_msg():
     if p1.check_for_new_msg():
         f(p1.read_msg(p1.check_for_new_msg()))
-    t.start()
-    print("started")
+    sleep(1)
 
 
-t = Timer(3, check_for_msg)
-t.start()
-
-
-
-
+rec_t = threading.Thread(check_for_msg())
