@@ -18,6 +18,6 @@ class Gsm:
         p = subprocess.call(["mmcli", "-m", "0", "--messaging-list-sms"])
         if "No SMS messages were found" in p:
             return p
-        else
+        else:
             return None
 
