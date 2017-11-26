@@ -5,6 +5,7 @@ import subprocess
 class Gsm:
 
     def send_msg(self, number, content):
+        print("Sending")
         msg = "--messaging-create-sms=\'number=\"" + number + "\",text=\"" + content + "\",smsc=\"+38641001333\",validity=100,class=1,delivery-report-request=no\'"
         p = subprocess.Popen(["mmcli", "-m", "0", msg], stdout=subprocess.PIPE)
         msg_id = self.check_for_new_msg()
