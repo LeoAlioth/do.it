@@ -18,8 +18,8 @@ class Gsm:
         p = subprocess.Popen(["mmcli", "-m", "0", "--messaging-list-sms"], stdout = subprocess.PIPE)
         output = p.stdout.read()
         print(output)
-        if "No SMS messages were found" in output:
-            print(p)
+        if output.find("No SMS messages were found"):
+            print(output)
             return p
         else:
             print("None")
