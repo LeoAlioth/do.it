@@ -1,15 +1,12 @@
 import subprocess
-import threading
 
 
-class Gsm(threading.Thread):
+class Gsm:
+
     def __init__(self):
-        super(Gsm, self).__init__()
-        self.daemon = True
-        self.canceled = False
-        self.start()
         while self.check_for_new_msg():
             self.del_msg(self.check_for_new_msg())
+        self.init_msg_check_thread()
 
     def send_msg(self, number, content):
         print("Sending")
@@ -50,10 +47,12 @@ class Gsm(threading.Thread):
         else:
             return False
 
+    def init_msg_check_thread(self):
+        rec_t = threading.Thread(target=msg_check_thread)
+        rec_t.start()
+
     def msg_check_thread(self):
         while 1:
             if self.check_for_new_msg():
-                print(self.read_msg(self.check_for_new_msg()))
+                print(self.read_msg(p1.check_for_new_msg()))
 
-    rec_t = threading.Thread(target=msg_check_thread)
-    rec_t.start()
