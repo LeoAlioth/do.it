@@ -87,7 +87,6 @@ class Doit:
 					i = -1
 					for t in self.mods[mid].cmds[cmd]["in"]:
 						i = i + 1
-						print(t["type"], type(payload[i]))
 						if t["type"] == "bool" and type(payload[i]) is bool:
 							continue
 						elif t["type"] == "string" and type(payload[i]) is str:
@@ -114,7 +113,7 @@ class Doit:
 							data = self.mods[mid].cmds_call[cmd]()
 						else:
 							data = self.mods[mid].cmds_call[cmd](payload)
-						if type(data) is list:
+						if type(data) is dict:
 							if not data.get("status", None):
 								data = Doit.httpstatus(200, data)
 						else:
