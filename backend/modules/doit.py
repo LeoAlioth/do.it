@@ -47,3 +47,16 @@ def cmds(cfg):
 		module.cmds[cmd] = command
 
 	Module.modules[module.mid] = module
+
+
+
+
+automata = list()
+
+def context(cfg):
+	automata.append(
+		(
+			cfg["dfa"],
+			cfg["function"]
+		)
+	)

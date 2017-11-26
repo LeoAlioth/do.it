@@ -1,3 +1,6 @@
+from modules import doit as modules
+import gsm
+
 
 class Node:
 	def __init__(self, values, next_node, f = None):
@@ -66,7 +69,10 @@ class Node:
 			prev = tmp
 		Node.begin.append(tmp)
 
-	def run(sentence):
+	def run(tup):
+		number = tup[0]
+		sentence = tup[1]
+		data = ""
 		words = sentence.split(" ")
 		nodes = list()
 		loop = True
@@ -86,10 +92,21 @@ class Node:
 					arg = node.get()
 					f = node.f()
 					if len(arg) > 0:
-						f(arg)
+						data = f(arg)
 					else:
-						f()
+						data = f()
 					loop = False
 					break
 				nnodes.append(n)
 			nodes = nnodes
+			if loop == True:
+				data = "No appropriate functions found"
+			mobile.send_msg(number, data)
+
+
+
+
+for a,f in modules.automata:
+	Node.new(a, f)
+mobile = gsm.Gsm(Node.run)
+print("Contexted")
