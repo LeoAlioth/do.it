@@ -40,7 +40,7 @@ def get_module_cmd_data(mid=-1, cmd=""):
 		return jsonify(data), data["status"]
 	except:
 		return json.dumps({
-			"status": 400,
+			"status": 410,
 			"data": [],
 			"error": "Bad request"
 		})

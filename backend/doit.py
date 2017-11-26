@@ -110,12 +110,15 @@ class Doit:
 							break
 				if good_payload:
 					try:
-						data = self.mods[mid].cmds_call[cmd](payload);
-						if not data.get("status", None):
-							if type(data) is list:
+						if len(payload) == 0:
+							data = self.mods[mid].cmds_call[cmd]()
+						else:
+							data = self.mods[mid].cmds_call[cmd](payload)
+						if type(data) is list:
+							if not data.get("status", None):
 								data = Doit.httpstatus(200, data)
-							else:
-								data = Doit.httpstatus(200, [data])
+						else:
+							data = Doit.httpstatus(200, [data])
 					except:
 						data = Doit.httpstatus(500, [], "Internal server error")
 				else:
