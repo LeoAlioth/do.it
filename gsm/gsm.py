@@ -6,21 +6,19 @@ class Gsm:
     def __init__(self, phone_num):
         self.phone_num = phone_num
 
-
-
     def send_msg(self):
         return None
 
-    def read_message(self, msg_id):
-        return None
+    def read_msg(self, msg_id):
+        p = subprocess.Popen(["mmcli", "-s", str(msg_id)], stdout=subprocess.PIPE)
+        output = str(p.stdout.read(), "utf-8")
+        output = output.split("text: ")[-1].split("\n")[0]
+        return output
 
     def check_for_new_msg(self):
-        p = subprocess.Popen(["mmcli", "-m", "0", "--messaging-list-sms"], stdout = subprocess.PIPE)
-        output = p.stdout.read()
-        print(output)
-        if output.find("No SMS messages were found"):
-            print(output)
-            return p
+        p = subprocess.Popen(["mmcli", "-m", "0", "--messaging-list-sms"], stdout=subprocess.PIPE)
+        output = str(p.stdout.read(), "utf-8")
+        if output.find('No SMS messages were found') != -1:
+            return False
         else:
-            print("None")
-            return None
+            return int(output.split("/")[-1].split(" ")[0])
