@@ -6,9 +6,9 @@ class Gsm:
 
     def send_msg(self, number, content):
         print("Sending")
-        msg = "number=\"" + number + "\",text=\"" + content + "\",smsc=\"+38641001333\",validity=100,class=1,delivery-report-request=no"
+        msg = "\'number=\"" + number + "\",text=\"" + content + "\",smsc=\"+38641001333\",validity=100,class=1,delivery-report-request=no\'"
         print(msg)
-        p = subprocess.Popen(["mmcli", "-m", "0", "--messaging-create-sms", msg], stdout=subprocess.PIPE)
+        p = subprocess.Popen(["mmcli", "-m", "0", "--messaging-create-sms=" + msg], stdout=subprocess.PIPE)
         msg_id = self.check_for_new_msg()
         p = subprocess.Popen(["mmcli", "-m", "0", "-s", str(msg_id), "--send"], stdout=subprocess.PIPE)
         return None
