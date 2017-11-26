@@ -4,10 +4,11 @@ import subprocess
 
 class Gsm:
 
-    def __init__(self, phone_num):
-        self.phone_num = phone_num
-
-    def send_msg(self):
+    def send_msg(self, number, content):
+        msg = "--messaging-create-sms=\'number=\"" + number + "\",text=\"" + content + "\",smsc=\"+38641001333\",validity=100,class=1,delivery-report-request=no\'"
+        p = subprocess.Popen(["mmcli", "-m", "0", msg], stdout=subprocess.PIPE)
+        msg_id = self.check_for_new_msg()
+        p = subprocess.Popen(["mmcli", "-m", "0", "-s", str(msg_id), "--send"], stdout=subprocess.PIPE)
         return None
 
     def read_msg(self, msg_id):
