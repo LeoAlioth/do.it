@@ -2,7 +2,7 @@ from gsm import *
 from time import sleep
 import threading
 
-p1 = Gsm("+38651884931")
+p1 = Gsm()
 last_msg = ""
 
 f = print
