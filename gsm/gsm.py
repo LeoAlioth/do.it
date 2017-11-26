@@ -23,7 +23,7 @@ class Gsm:
         else:
             return int(output.split("/")[-1].split(" ")[0])
 
-    def del_msg(msg_id):
+    def del_msg(self, msg_id):
         p = subprocess.Popen(["mmcli", "-m", "0", "--messaging-delete-sms=", str(msg_id)], stdout=subprocess.PIPE)
         output = str(p.stdout.read(), "utf-8")
         if output.find("successfully deleted SMS from modem") != -1:
