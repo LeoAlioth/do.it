@@ -2,11 +2,12 @@ import subprocess
 import threading
 
 
-class Gsm():
-
-
-
+class Gsm(threading.Thread):
     def __init__(self):
+        super(Gsm, self).__init__()
+        self.daemon = True
+        self.canceled = False
+        self.start()
         while self.check_for_new_msg():
             self.del_msg(self.check_for_new_msg())
 
