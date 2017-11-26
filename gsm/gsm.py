@@ -6,7 +6,7 @@ class Gsm:
 
     def send_msg(self, number, content):
         print("Sending")
-        msg = "--messaging-create-sms=\'number=\"" + number + "\",text=\"" + content + "\",smsc=\"+38641001333\",validity=100,class=1,delivery-report-request=no\'"
+        msg = "\"--messaging-create-sms=\'number=\"" + number + "\",text=\"" + content + "\",smsc=\"+38641001333\",validity=100,class=1,delivery-report-request=no\'"
         print(msg)
         msg = msg.strip(" ").strip("'")
         p = subprocess.Popen(["mmcli", "-m", "0", msg], stdout=subprocess.PIPE)
