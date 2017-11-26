@@ -46,6 +46,7 @@ class Gsm():
         msg_id = self.check_for_new_msg()
         p = subprocess.Popen(["mmcli", "-m", "0", "-s", str(msg_id), "--send"], stdout=subprocess.PIPE)
         p.wait()
+        self.del_msg(msg_id)
         return None
 
     def msg_check_thread(self):
