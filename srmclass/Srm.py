@@ -1,7 +1,7 @@
 import requests
 
 
-class Srm():
+class Srm:
     def __init__(self, url):
         self.url = url
         r = requests.get(self.url, verify=False)
