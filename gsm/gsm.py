@@ -15,6 +15,7 @@ class Gsm:
     def check_for_new_msg(self):
         p = subprocess.Popen(["mmcli", "-m", "0", "--messaging-list-sms"], stdout=subprocess.PIPE)
         output = str(p.stdout.read(), "utf-8")
+        print(output)
         if output.find('No SMS messages were found') == -1:
             print("None")
             return False
