@@ -1,4 +1,5 @@
 import subprocess
+from time import sleep
 
 
 
@@ -10,6 +11,8 @@ class Gsm:
         print(msg)
 
         p = subprocess.Popen(["mmcli", "-m", "0", msg], stdout=subprocess.PIPE)
+        p.wait()
+        print("woke up")
         msg_id = self.check_for_new_msg()
         p = subprocess.Popen(["mmcli", "-m", "0", "-s", str(msg_id), "--send"], stdout=subprocess.PIPE)
         return None
