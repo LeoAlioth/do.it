@@ -13,9 +13,10 @@ while p1.check_for_new_msg():
 
 
 def check_for_msg():
-    if p1.check_for_new_msg():
-        f(p1.read_msg(p1.check_for_new_msg()))
-    sleep(1)
+    while 1:
+        if p1.check_for_new_msg():
+            f(p1.read_msg(p1.check_for_new_msg()))
+        sleep(1)
 
 
 rec_t = threading.Thread(check_for_msg())
