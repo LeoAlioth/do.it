@@ -20,5 +20,6 @@ def check_for_msg():
 
 
 rec_t = threading.Thread(check_for_msg())
+rec_t.start()
 
 p1.send_msg("+38651884931", "Please work!")
